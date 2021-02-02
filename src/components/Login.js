@@ -30,7 +30,7 @@ export default function Login() {
 
     return (
         <Container className='login-container'>
-        <Row fluid>
+        <Row sm={1} xs={1} md={2} xl={2} fluid>
         <Col>
         <Image src={loginPic} fluid />
         </Col>

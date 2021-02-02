@@ -34,7 +34,7 @@ export default function Signup() {
 
     return (
 <Container className='login-container'>
-    <Row>
+<Row sm={1} xs={1} md={2} xl={2} fluid>
     <Col className='d-flex align-items-center'>
     <Image src={loginPic} fluid />
     </Col>
