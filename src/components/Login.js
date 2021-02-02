@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form , Card , Alert , Image, Row , Col, Container} from 'react-bootstrap'; 
 import { useAuth } from '../AuthContext'
-//import loginPic from './picture/login.jpg'
+import loginPic from '../picture/login.jpg'
 import './login.css'
 
 
@@ -32,7 +32,7 @@ export default function Login() {
         <Container className='login-container'>
         <Row fluid>
         <Col>
-        {/*<Image src={loginPic} fluid />*/}
+        <Image src={loginPic} fluid />
         </Col>
         <Col>
         <div className='w-100'  style={{maxWidth:'700px'}}>

@@ -2,7 +2,8 @@ import React, {useRef , useState } from 'react'
 import { Button, Form , Card, Alert, Container,Row, Col, Image } from 'react-bootstrap'; 
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-//import loginPic from './picture/login.jpg'
+import loginPic from '../picture/login.jpg'
+
 
 
 export default function Signup() {
@@ -35,7 +36,7 @@ export default function Signup() {
 <Container className='login-container'>
     <Row>
     <Col className='d-flex align-items-center'>
-    {/*<Image src={loginPic} fluid />*/}
+    <Image src={loginPic} fluid />
     </Col>
     <Col>
         <div className='w-100'  style={{maxWidth:'700px'}}>
