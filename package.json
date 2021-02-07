@@ -1,6 +1,5 @@
 {
     "name": "chatx",
-    "homepage": "https://hejthere.github.io/chat1chat/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

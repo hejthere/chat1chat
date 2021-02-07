@@ -1,16 +1,16 @@
 
-import firebaseApp, { auth } from './firebase'; 
+import firebaseApp, { auth } from './firebase';
 import firebase from 'firebase/app';
-import { database } from './firebase' 
-import React, {useContext, useState, useEffect} from 'react';
- 
-const userContext = React.createContext(); 
+import { database } from './firebase'
+import React, { useContext, useState, useEffect } from 'react';
 
-export function useAuth (){
-    return useContext(userContext); 
+const userContext = React.createContext();
+
+export function useAuth() {
+    return useContext(userContext);
 }
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState()
     const [commentDatabase, setCommentDatabase] = useState()
@@ -18,48 +18,53 @@ export function AuthProvider({children}) {
 
 
 
-    
 
-    function addComment(UserAndComment){
-    return database.ref('/a').push({UserAndComment}) 
+
+    function addComment(UserAndComment) {
+        return database.ref('/a').push({ UserAndComment })
     }
 
-    async function signUp(email, password){
+    async function signUp(email, password) {
         try {
             await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
             await auth.createUserWithEmailAndPassword(email, password);
         } catch (error) {
-            alert(error);}}
-    
-        function signOut(){
-        return auth.signOut()
+            alert(error);
         }
-
-  async function login(email, password){
-    try {
-        // await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-        await auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-        alert(error);}}
-
-    function signOut(){
-    return auth.signOut()
     }
 
-    useEffect(()=>{
-        const unsubscribe = 
-        auth.onAuthStateChanged((user) => {
-        setCurrentUser(user)});
-        database.ref('/a').on('value', e=>{
-        setCommentDatabase(e.val()) ;
-        setLoading(false)  
-            
-    })  
-        return unsubscribe
-        },[])
+    function signOut() {
+        return auth.signOut()
+    }
 
-    const value= {
-        currentUser, 
+    async function login(email, password) {
+        try {
+            // await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+            await auth.signInWithEmailAndPassword(email, password);
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    function signOut() {
+        return auth.signOut()
+    }
+
+    useEffect(() => {
+        const unsubscribe =
+            auth.onAuthStateChanged((user) => {
+                setCurrentUser(user)
+            });
+        database.ref('/a').on('value', e => {
+            setCommentDatabase(e.val());
+            setLoading(false)
+
+        })
+        return unsubscribe
+    }, [])
+
+    const value = {
+        currentUser,
         setCurrentUser,
         commentDatabase,
         signUp,
@@ -67,7 +72,7 @@ export function AuthProvider({children}) {
         signOut,
         addComment
     }
-    
+
     return (
         <userContext.Provider value={value}>
             {!loading && children}
