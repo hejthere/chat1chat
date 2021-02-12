@@ -1,5 +1,5 @@
 
-import firebaseApp, { auth } from './firebase';
+import { auth } from './firebase';
 import firebase from 'firebase/app';
 import { database } from './firebase'
 import React, { useContext, useState, useEffect } from 'react';
@@ -39,15 +39,10 @@ export function AuthProvider({ children }) {
 
     async function login(email, password) {
         try {
-            // await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
             await auth.signInWithEmailAndPassword(email, password);
         } catch (error) {
             alert(error);
         }
-    }
-
-    function signOut() {
-        return auth.signOut()
     }
 
     useEffect(() => {

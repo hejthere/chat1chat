@@ -1,21 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useAuth } from '../AuthContext'
-import { Button, Row, Col } from 'react-bootstrap'
+import { Button, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { Card, Container } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import './login.css'
 
 export default function Home() {
 
-    const { currentUser, setCurrentUser } = useAuth()
+    const { currentUser } = useAuth()
     const { signOut } = useAuth()
     const { commentDatabase } = useAuth()
     const { addComment } = useAuth()
     const history = useHistory()
     const commentRef = useRef()
-    const [likeNumber, setLikeNumber] = useState(0)
 
     async function signOutHandler() {
         await signOut()
@@ -30,11 +27,11 @@ export default function Home() {
     let commentKey = Object.keys(commentDatabase);
     console.log(currentUser)
     return (
-        <Container className='outer-box' fluid>
-            <Row className='container-box1' fluid></Row>
-            <Row className='container-box2' fluid></Row>
-            <h1 className='w-100'>HomePage </h1>
-            <div className='typing-effect'>
+        <Container className='outer-box' fluid="true">
+            <Row className='container-box1' fluid="true"></Row>
+            <Row className='container-box2' fluid="true"></Row>
+            <h1 className='w-100 pl-2'>HomePage </h1>
+            <div className='pl-2 typing-effect'>
                 <h3 >Hey {currentUser.email} ! </h3></div>
             <Card className='my-3 p-2'>
                 <Card.Body className='comment-box'>
